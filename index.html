@@ -23,26 +23,57 @@
     </div>
     <div class="calculator">
       <div class="display">
-        <div class="display-title">ENGINEERING CALC</div>
-        <div class="display-status">
-          <span id="mem-ind" class="mem-badge">M</span>
-          <span id="mode" class="mode-badge">DEG</span>
+        <div class="display-top">
+          <button id="btn-settings" class="settings-btn" title="Настройки">⚙</button>
+          <span class="display-title">ENGINEERING CALC</span>
+          <div class="display-status">
+            <span id="mem-ind" class="mem-badge">M</span>
+            <span id="mode" class="mode-badge">DEG</span>
+          </div>
+        </div>
+
+        <div class="settings-panel" id="settings-panel">
+          <div class="settings-section">
+            <span class="settings-label">ТЕМА</span>
+            <label class="toggle-wrap">
+              <input type="checkbox" id="theme-checkbox">
+              <span class="toggle-track">
+                <span class="toggle-thumb"></span>
+              </span>
+              <span class="toggle-text" id="theme-text">Тёмная</span>
+            </label>
+          </div>
+          <div class="settings-divider"></div>
+          <div class="settings-section">
+            <span class="settings-label">ЦВЕТ КНОПОК</span>
+            <div class="color-options">
+              <button class="color-opt active" data-color="space">
+                <span class="color-dot" style="background:#4466ff"></span>
+                <span>Space</span>
+              </button>
+              <button class="color-opt" data-color="forest">
+                <span class="color-dot" style="background:#22cc44"></span>
+                <span>Forest</span>
+              </button>
+              <button class="color-opt" data-color="sunset">
+                <span class="color-dot" style="background:#ff6622"></span>
+                <span>Sunset</span>
+              </button>
+              <button class="color-opt" data-color="ocean">
+                <span class="color-dot" style="background:#22ccee"></span>
+                <span>Ocean</span>
+              </button>
+              <button class="color-opt" data-color="violet">
+                <span class="color-dot" style="background:#9922ff"></span>
+                <span>Violet</span>
+              </button>
+            </div>
+          </div>
         </div>
         <div id="expression" class="expr"></div>
         <div id="result" class="result">0</div>
       </div>
       <div id="buttons" class="btn-grid"></div>
-      <div class="theme-bar">
-        <button class="theme-mode-btn" id="btn-theme" title="Светлая / тёмная тема">🌙</button>
-        <span class="theme-label">Цвет</span>
-        <div class="swatches">
-          <button class="swatch active" data-color="space"  style="background:#4466ff" title="Space"></button>
-          <button class="swatch"        data-color="forest" style="background:#22cc44" title="Forest"></button>
-          <button class="swatch"        data-color="sunset" style="background:#ff6622" title="Sunset"></button>
-          <button class="swatch"        data-color="ocean"  style="background:#22ccee" title="Ocean"></button>
-          <button class="swatch"        data-color="violet" style="background:#9922ff" title="Violet"></button>
-        </div>
-      </div>
     </div>
 
     <div class="right-panel">

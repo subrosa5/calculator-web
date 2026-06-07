@@ -352,32 +352,52 @@ document.getElementById('clear-history')!.addEventListener('click', () => {
 
 const root = document.documentElement;
 
-function loadThemePrefs(): void {
-  const theme = localStorage.getItem('theme') || 'dark';
-  const color = localStorage.getItem('color') || 'space';
+const settingsBtn   = document.getElementById('btn-settings')!;
+const settingsPanel = document.getElementById('settings-panel')!;
+const themeCheckbox = document.getElementById('theme-checkbox') as HTMLInputElement;
+const themeText     = document.getElementById('theme-text')!;
+
+function applyTheme(theme: string): void {
   root.dataset.theme = theme;
+  const isLight = theme === 'light';
+  themeCheckbox.checked = isLight;
+  themeText.textContent = isLight ? 'Светлая' : 'Тёмная';
+  localStorage.setItem('theme', theme);
+}
+
+function applyColor(color: string): void {
   root.dataset.color = color;
-  const btn = document.getElementById('btn-theme')!;
-  btn.textContent = theme === 'dark' ? '🌙' : '☀️';
-  document.querySelectorAll('.swatch').forEach(s => {
-    s.classList.toggle('active', (s as HTMLElement).dataset.color === color);
+  localStorage.setItem('color', color);
+  document.querySelectorAll('.color-opt').forEach(el => {
+    el.classList.toggle('active', (el as HTMLElement).dataset.color === color);
   });
 }
 
-document.getElementById('btn-theme')!.addEventListener('click', () => {
-  const isDark = root.dataset.theme !== 'light';
-  root.dataset.theme = isDark ? 'light' : 'dark';
-  localStorage.setItem('theme', root.dataset.theme);
-  (document.getElementById('btn-theme') as HTMLElement).textContent = isDark ? '☀️' : '🌙';
+function loadThemePrefs(): void {
+  applyTheme(localStorage.getItem('theme') || 'dark');
+  applyColor(localStorage.getItem('color') || 'space');
+}
+
+settingsBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  const isOpen = settingsPanel.classList.toggle('open');
+  settingsBtn.classList.toggle('open', isOpen);
 });
 
-document.querySelectorAll('.swatch').forEach(swatch => {
-  swatch.addEventListener('click', () => {
-    const color = (swatch as HTMLElement).dataset.color!;
-    root.dataset.color = color;
-    localStorage.setItem('color', color);
-    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-    swatch.classList.add('active');
+document.addEventListener('click', () => {
+  settingsPanel.classList.remove('open');
+  settingsBtn.classList.remove('open');
+});
+
+settingsPanel.addEventListener('click', e => e.stopPropagation());
+
+themeCheckbox.addEventListener('change', () => {
+  applyTheme(themeCheckbox.checked ? 'light' : 'dark');
+});
+
+document.querySelectorAll('.color-opt').forEach(el => {
+  el.addEventListener('click', () => {
+    applyColor((el as HTMLElement).dataset.color!);
   });
 });
 
