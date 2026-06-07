@@ -39,13 +39,11 @@ npm test
 | Прочие функции | 5 |
 | Сложные выражения | 6 |
 
-## Деплой
+## CI/CD
 
-Деплой происходит **автоматически** при каждом `git push` в ветку `main`.
+Проект использует GitHub Actions для автоматической сборки и публикации на GitHub Pages при каждом push в ветку `main`.
 
-GitHub Actions собирает проект и публикует на GitHub Pages — вручную ничего делать не нужно.
-
-Статус сборки: [Actions](https://github.com/subrosa5/calculator-web/actions)
+[![Deploy](https://github.com/subrosa5/calculator-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/subrosa5/calculator-web/actions/workflows/deploy.yml)
 
 ## Стек
 
