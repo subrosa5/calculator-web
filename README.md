@@ -39,6 +39,14 @@ npm test
 | Прочие функции | 5 |
 | Сложные выражения | 6 |
 
+## Деплой
+
+Деплой происходит **автоматически** при каждом `git push` в ветку `main`.
+
+GitHub Actions собирает проект и публикует на GitHub Pages — вручную ничего делать не нужно.
+
+Статус сборки: [Actions](https://github.com/subrosa5/calculator-web/actions)
+
 ## Стек
 
 - **TypeScript** — логика и интерфейс
