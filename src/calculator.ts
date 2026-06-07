@@ -2,6 +2,7 @@ import './styles.css';
 import { evaluate } from './evaluator';
 import { initGrapher } from './grapher';
 import { initVoice } from './voice';
+import { initMatrix } from './matrix';
 
 // ---- State ----
 
@@ -420,6 +421,7 @@ loadThemePrefs();
 renderButtons();
 render();
 initGrapher();
+initMatrix();
 
 // ---- Voice ----
 

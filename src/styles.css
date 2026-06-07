@@ -317,9 +317,19 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background-image:
-    radial-gradient(ellipse at 30% 20%, rgba(0, 80, 255, 0.06) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 80%, rgba(100, 0, 200, 0.06) 0%, transparent 60%);
+}
+
+#matrix-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
 }
 
 .app {
