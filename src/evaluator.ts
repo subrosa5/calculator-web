@@ -89,6 +89,7 @@ export function tokenize(expr: string): Token[] {
       while (i < expr.length && /[a-zπ]/.test(expr[i])) s += expr[i++];
       if (s in CONSTANTS)           tokens.push({ kind: 'const', value: s });
       else if (s in MATH_FUNCTIONS) tokens.push({ kind: 'fn',    value: s });
+      else if (/^[a-z]$/.test(s))   tokens.push({ kind: 'const', value: s });
       else throw new Error(`Неизвестно: ${s}`);
       continue;
     }
@@ -175,14 +176,16 @@ function shuntingYard(tokens: Token[]): Token[] {
   return output;
 }
 
-function evalRPN(rpn: Token[], deg: boolean): number {
+function evalRPN(rpn: Token[], deg: boolean, vars: Record<string, number> = {}): number {
   const stack: number[] = [];
 
   for (const tok of rpn) {
     if (tok.kind === 'num') {
       stack.push(parseFloat(tok.value));
     } else if (tok.kind === 'const') {
-      stack.push(CONSTANTS[tok.value]);
+      if (tok.value in vars) stack.push(vars[tok.value]);
+      else if (tok.value in CONSTANTS) stack.push(CONSTANTS[tok.value]);
+      else throw new Error(`Переменная '${tok.value}' не определена`);
     } else if (tok.kind === 'postfix') {
       if (stack.length < 1) throw new Error('Ошибка выражения');
       stack.push(factorial(stack.pop()!));
@@ -201,8 +204,8 @@ function evalRPN(rpn: Token[], deg: boolean): number {
   return stack[0];
 }
 
-export function evaluate(expr: string, deg = true): number {
+export function evaluate(expr: string, deg = true, vars: Record<string, number> = {}): number {
   const tokens = tokenize(expr);
   if (tokens.length === 0) throw new Error('Пустое выражение');
-  return evalRPN(shuntingYard(tokens), deg);
+  return evalRPN(shuntingYard(tokens), deg, vars);
 }

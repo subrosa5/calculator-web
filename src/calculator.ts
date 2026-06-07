@@ -1,5 +1,6 @@
 import './styles.css';
 import { evaluate } from './evaluator';
+import { initGrapher } from './grapher';
 
 // ---- State ----
 
@@ -347,7 +348,20 @@ document.getElementById('clear-history')!.addEventListener('click', () => {
   render();
 });
 
+// ---- Tabs ----
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const name = (tab as HTMLElement).dataset.tab!;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+    tab.classList.add('active');
+    document.getElementById(`tab-${name}`)!.classList.remove('hidden');
+  });
+});
+
 // ---- Init ----
 
 renderButtons();
 render();
+initGrapher();

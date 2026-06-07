@@ -23,13 +23,32 @@
       </div>
       <div id="buttons" class="btn-grid"></div>
     </div>
-    <div class="history-panel">
-      <div class="history-header">
-        <span>История вычислений</span>
-        <button id="clear-history">Очистить</button>
+
+    <div class="right-panel">
+      <div class="tabs">
+        <button class="tab active" data-tab="history">История</button>
+        <button class="tab" data-tab="graph">График</button>
       </div>
-      <div class="history-list" id="history-list">
-        <div class="history-empty">Нет записей</div>
+
+      <div class="tab-content" id="tab-history">
+        <div class="history-header">
+          <button id="clear-history">Очистить</button>
+        </div>
+        <div class="history-list" id="history-list">
+          <div class="history-empty">Нет записей</div>
+        </div>
+      </div>
+
+      <div class="tab-content hidden" id="tab-graph">
+        <div class="graph-controls">
+          <input id="fn-input" type="text" value="sin(x)" placeholder="f(x) = ..." spellcheck="false">
+          <button id="btn-plot">Построить</button>
+        </div>
+        <div class="graph-wrap">
+          <canvas id="graph-canvas"></canvas>
+        </div>
+        <div class="graph-hint">колёсико — zoom · перетащить — пан</div>
+        <div class="graph-error" id="graph-error"></div>
       </div>
     </div>
   </div>
