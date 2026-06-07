@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <div class="calculator">
+      <div class="display">
+        <div class="display-title">ENGINEERING CALC</div>
+        <div class="display-status">
+          <span id="mem-ind" class="mem-badge">M</span>
+          <span id="mode" class="mode-badge">DEG</span>
+        </div>
+        <div id="expression" class="expr"></div>
+        <div id="result" class="result">0</div>
+      </div>
+      <div id="buttons" class="btn-grid"></div>
+    </div>
+    <div class="history-panel">
+      <div class="history-header">
+        <span>История вычислений</span>
+        <button id="clear-history">Очистить</button>
+      </div>
+      <div class="history-list" id="history-list">
+        <div class="history-empty">Нет записей</div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/calculator.ts"></script>
+</body>
+</html>
