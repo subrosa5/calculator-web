@@ -51,10 +51,10 @@ body {
 
 .app {
   display: grid;
-  grid-template-columns: 130px 520px 270px;
-  gap: 14px;
+  grid-template-columns: 120px 480px 250px;
+  gap: 12px;
   width: 100%;
-  max-width: 960px;
+  max-width: 880px;
 }
 
 /* ---- Left panel ---- */
@@ -474,11 +474,6 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
 /* ---- Responsive ---- */
-@media (max-width: 960px) {
-  .app { grid-template-columns: 520px 270px; }
-  .left-panel { display: none; }
-}
-
 @media (max-width: 820px) {
   .app { grid-template-columns: 1fr; }
   .history-panel { max-height: 200px; }
