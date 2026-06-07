@@ -18,10 +18,6 @@
 - **Live preview** — результат обновляется во время набора
 - **Клавиатура** — полная поддержка ввода с клавиатуры (`p` → π)
 
-## Скриншот
-
-![Calculator Screenshot](https://subrosa5.github.io/calculator-web/screenshot.png)
-
 ## Стек
 
 - **TypeScript** — логика и интерфейс
