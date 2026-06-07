@@ -348,6 +348,39 @@ document.getElementById('clear-history')!.addEventListener('click', () => {
   render();
 });
 
+// ---- Themes ----
+
+const root = document.documentElement;
+
+function loadThemePrefs(): void {
+  const theme = localStorage.getItem('theme') || 'dark';
+  const color = localStorage.getItem('color') || 'space';
+  root.dataset.theme = theme;
+  root.dataset.color = color;
+  const btn = document.getElementById('btn-theme')!;
+  btn.textContent = theme === 'dark' ? '🌙' : '☀️';
+  document.querySelectorAll('.swatch').forEach(s => {
+    s.classList.toggle('active', (s as HTMLElement).dataset.color === color);
+  });
+}
+
+document.getElementById('btn-theme')!.addEventListener('click', () => {
+  const isDark = root.dataset.theme !== 'light';
+  root.dataset.theme = isDark ? 'light' : 'dark';
+  localStorage.setItem('theme', root.dataset.theme);
+  (document.getElementById('btn-theme') as HTMLElement).textContent = isDark ? '☀️' : '🌙';
+});
+
+document.querySelectorAll('.swatch').forEach(swatch => {
+  swatch.addEventListener('click', () => {
+    const color = (swatch as HTMLElement).dataset.color!;
+    root.dataset.color = color;
+    localStorage.setItem('color', color);
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    swatch.classList.add('active');
+  });
+});
+
 // ---- Tabs ----
 
 document.querySelectorAll('.tab').forEach(tab => {
@@ -362,6 +395,7 @@ document.querySelectorAll('.tab').forEach(tab => {
 
 // ---- Init ----
 
+loadThemePrefs();
 renderButtons();
 render();
 initGrapher();
