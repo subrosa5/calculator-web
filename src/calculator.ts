@@ -1,6 +1,7 @@
 import './styles.css';
 import { evaluate } from './evaluator';
 import { initGrapher } from './grapher';
+import { initVoice } from './voice';
 
 // ---- State ----
 
@@ -419,3 +420,33 @@ loadThemePrefs();
 renderButtons();
 render();
 initGrapher();
+
+// ---- Voice ----
+
+const micBtn        = document.getElementById('btn-mic')!;
+const voiceTransEl  = document.getElementById('voice-transcript')!;
+
+const startListening = initVoice(
+  (expr, raw) => {
+    micBtn.classList.remove('listening');
+    voiceTransEl.textContent = `"${raw}"`;
+    setTimeout(() => { voiceTransEl.textContent = ''; }, 3000);
+    if (expr === '=') { calc(); return; }
+    if (expr) { append(expr); }
+  },
+  (msg) => {
+    micBtn.classList.remove('listening');
+    voiceTransEl.textContent = msg;
+    setTimeout(() => { voiceTransEl.textContent = ''; }, 3000);
+  }
+);
+
+if (startListening) {
+  micBtn.addEventListener('click', () => {
+    micBtn.classList.add('listening');
+    voiceTransEl.textContent = 'Слушаю…';
+    startListening();
+  });
+} else {
+  micBtn.style.display = 'none';
+}
